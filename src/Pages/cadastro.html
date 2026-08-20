@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Criar conta — Estuda Junto</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f5f7fb;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* HEADER */
+
+        header {
+            background: #2563eb;
+            color: white;
+            padding: 18px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .logo span {
+            color: #bfdbfe;
+        }
+
+        .home-btn {
+            background: white;
+            color: #2563eb;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .home-btn:hover {
+            background: #eff6ff;
+        }
+
+        /* CONTAINER */
+
+        .register-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 20px;
+        }
+
+        .register-card {
+            width: 100%;
+            max-width: 480px;
+            background: white;
+            padding: 35px;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, .08);
+        }
+
+        /* CABEÇALHO */
+
+        .register-header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .register-icon {
+            width: 65px;
+            height: 65px;
+            background: #eff6ff;
+            color: #2563eb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 15px;
+        }
+
+        .register-header h1 {
+            font-size: 27px;
+            margin-bottom: 8px;
+        }
+
+        .register-header p {
+            color: #777;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* FORM */
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 7px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d7dce2;
+            border-radius: 8px;
+            outline: none;
+            font-size: 15px;
+            transition: .2s;
+        }
+
+        .form-group input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 2px #dbeafe;
+        }
+
+        .help {
+            color: #888;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* SENHA */
+
+        .password-container {
+            position: relative;
+        }
+
+        .password-container input {
+            padding-right: 45px;
+        }
+
+        .password-button {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* FORÇA DA SENHA */
+
+        .password-strength {
+            height: 5px;
+            background: #e5e7eb;
+            border-radius: 5px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            width: 0;
+            transition: .3s;
+        }
+
+        .strength-text {
+            font-size: 12px;
+            margin-top: 5px;
+            color: #777;
+        }
+
+        /* TERMOS */
+
+        .terms {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 13px;
+            color: #555;
+            margin: 20px 0;
+            line-height: 1.4;
+        }
+
+        .terms input {
+            margin-top: 3px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .terms a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+        /* BOTÃO */
+
+        .register-button {
+            width: 100%;
+            padding: 13px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .register-button:hover {
+            background: #1d4ed8;
+        }
+
+        /* MENSAGENS */
+
+        .error-message,
+        .success-message {
+            display: none;
+            padding: 10px;
+            border-radius: 7px;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        .error-message {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+
+        .success-message {
+            background: #f0fdf4;
+            color: #16a34a;
+            border: 1px solid #bbf7d0;
+        }
+
+        /* LOGIN */
+
+        .login {
+            text-align: center;
+            margin-top: 22px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .login a {
+            color: #2563eb;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .login a:hover {
+            text-decoration: underline;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-size: 12px;
+        }
+
+        /* RESPONSIVO */
+
+        @media (max-width: 500px) {
+
+            header {
+                padding: 16px 20px;
+            }
+
+            .register-card {
+                padding: 25px 20px;
+            }
+
+            .register-header h1 {
+                font-size: 24px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div
+        class="logo"
+        onclick="window.location.href='index.html'"
+    >
+        Estuda <span>Junto</span>
+    </div>
+
+
+    <button
+        class="home-btn"
+        onclick="window.location.href='index.html'"
+    >
+        Página inicial
+    </button>
+
+</header>
+
+
+<main class="register-container">
+
+
+    <div class="register-card">
+
+
+        <div class="register-header">
+
+            <div class="register-icon">
+                🎓
+            </div>
+
+            <h1>
+                Criar sua conta
+            </h1>
+
+            <p>
+                Faça parte do Estuda Junto e participe
+                das discussões com outros estudantes.
+            </p>
+
+        </div>
+
+
+        <!-- MENSAGENS -->
+
+        <div
+            class="error-message"
+            id="errorMessage"
+        ></div>
+
+
+        <div
+            class="success-message"
+            id="successMessage"
+        ></div>
+
+
+        <!-- FORMULÁRIO -->
+
+        <form
+            id="registerForm"
+            onsubmit="register(event)"
+        >
+
+
+            <!-- NOME -->
+
+            <div class="form-group">
+
+                <label for="name">
+                    Nome completo
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Digite seu nome"
+                    autocomplete="name"
+                    maxlength="100"
+                    required
+                >
+
+            </div>
+
+
+            <!-- USUÁRIO -->
+
+            <div class="form-group">
+
+                <label for="username">
+                    Nome de usuário
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Ex: joao123"
+                    autocomplete="username"
+                    maxlength="30"
+                    required
+                >
+
+                <div class="help">
+                    Use apenas letras, números e "_".
+                </div>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    E-mail
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Digite seu e-mail"
+                    autocomplete="email"
+                    required
+                >
+
+            </div>
+
+
+            <!-- SENHA -->
+
+            <div class="form-group">
+
+                <label for="password">
+                    Senha
+                </label>
+
+                <div class="password-container">
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Crie uma senha"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-button"
+                        id="passwordButton"
+                        onclick="togglePassword('password', 'passwordButton')"
+                    >
+                        👁
+                    </button>
+
+                </div>
+
+
+                <div class="password-strength">
+
+                    <div
+                        class="password-strength-bar"
+                        id="strengthBar"
+                    ></div>
+
+                </div>
+
+
+                <div
+                    class="strength-text"
+                    id="strengthText"
+                >
+                    Digite uma senha.
+
+                </div>
+
+            </div>
+
+
+            <!-- CONFIRMAR SENHA -->
+
+            <div class="form-group">
+
+                <label for="confirmPassword">
+                    Confirmar senha
+                </label>
+
+                <div class="password-container">
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Digite a senha novamente"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-button"
+                        id="confirmButton"
+                        onclick="togglePassword('confirmPassword', 'confirmButton')"
+                    >
+                        👁
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- TERMOS -->
+
+            <div class="terms">
+
+                <input
+                    type="checkbox"
+                    id="terms"
+                    required
+                >
+
+                <label for="terms">
+
+                    Concordo com os
+                    <a
+                        href="#"
+                        onclick="showTerms(event)"
+                    >
+                        termos de uso
+                    </a>
+                    e a política de privacidade
+                    do Estuda Junto.
+
+                </label>
+
+            </div>
+
+
+            <!-- CADASTRAR -->
+
+            <button
+                type="submit"
+                class="register-button"
+            >
+                Criar minha conta
+            </button>
+
+
+        </form>
+
+
+        <!-- LOGIN -->
+
+        <div class="login">
+
+            Já possui uma conta?
+
+            <a href="login.html">
+                Entrar
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+<footer>
+
+    © 2026 Estuda Junto — Plataforma de aprendizado colaborativo
+
+</footer>
+
+
+<script>
+
+
+    /* MOSTRAR / OCULTAR SENHA */
+
+    function togglePassword(inputId, buttonId) {
+
+        const input =
+            document.getElementById(inputId);
+
+        const button =
+            document.getElementById(buttonId);
+
+
+        if (input.type === "password") {
+
+            input.type = "text";
+
+            button.textContent = "🙈";
+
+        } else {
+
+            input.type = "password";
+
+            button.textContent = "👁";
+
+        }
+
+    }
+
+
+    /* FORÇA DA SENHA */
+
+    document
+        .getElementById("password")
+        .addEventListener(
+            "input",
+            function() {
+
+                const password = this.value;
+
+                const bar =
+                    document.getElementById("strengthBar");
+
+                const text =
+                    document.getElementById("strengthText");
+
+
+                let strength = 0;
+
+
+                if (password.length >= 6) {
+                    strength++;
+                }
+
+                if (password.length >= 10) {
+                    strength++;
+                }
+
+                if (/[A-Z]/.test(password)) {
+                    strength++;
+                }
+
+                if (/[0-9]/.test(password)) {
+                    strength++;
+                }
+
+                if (/[^A-Za-z0-9]/.test(password)) {
+                    strength++;
+                }
+
+
+                if (!password) {
+
+                    bar.style.width = "0%";
+
+                    text.textContent =
+                        "Digite uma senha.";
+
+                }
+
+                else if (strength <= 2) {
+
+                    bar.style.width = "35%";
+
+                    text.textContent =
+                        "Senha fraca.";
+
+                }
+
+                else if (strength <= 4) {
+
+                    bar.style.width = "70%";
+
+                    text.textContent =
+                        "Senha média.";
+
+                }
+
+                else {
+
+                    bar.style.width = "100%";
+
+                    text.textContent =
+                        "Senha forte.";
+
+                }
+
+            }
+        );
+
+
+    /* CADASTRO */
+
+    function register(event) {
+
+        event.preventDefault();
+
+
+        const name =
+            document
+                .getElementById("name")
+                .value
+                .trim();
+
+
+        const username =
+            document
+                .getElementById("username")
+                .value
+                .trim();
+
+
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim()
+                .toLowerCase();
+
+
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+
+        const confirmPassword =
+            document
+                .getElementById("confirmPassword")
+                .value;
+
+
+        const terms =
+            document
+                .getElementById("terms")
+                .checked;
+
+
+        /* LIMPAR MENSAGENS */
+
+        hideMessages();
+
+
+        /* VALIDAR NOME */
+
+        if (name.length < 3) {
+
+            showError(
+                "Digite seu nome completo."
+            );
+
+            return;
+
+        }
+
+
+        /* VALIDAR USUÁRIO */
+
+        const usernameRegex =
+            /^[a-zA-Z0-9_]+$/;
+
+
+        if (!usernameRegex.test(username)) {
+
+            showError(
+                "O nome de usuário pode conter apenas letras, números e '_'."
+            );
+
+            return;
+
+        }
+
+
+        if (username.length < 3) {
+
+            showError(
+                "O nome de usuário deve possuir pelo menos 3 caracteres."
+            );
+
+            return;
+
+        }
+
+
+        /* VALIDAR EMAIL */
+
+        const emailRegex =
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+        if (!emailRegex.test(email)) {
+
+            showError(
+                "Digite um e-mail válido."
+            );
+
+            return;
+
+        }
+
+
+        /* VALIDAR SENHA */
+
+        if (password.length < 6) {
+
+            showError(
+                "A senha deve possuir pelo menos 6 caracteres."
+            );
+
+            return;
+
+        }
+
+
+        /* CONFIRMAR SENHA */
+
+        if (password !== confirmPassword) {
+
+            showError(
+                "As senhas não são iguais."
+            );
+
+            return;
+
+        }
+
+
+        /* TERMOS */
+
+        if (!terms) {
+
+            showError(
+                "Você precisa aceitar os termos de uso."
+            );
+
+            return;
+
+        }
+
+
+        /*
+            VERIFICAR USUÁRIOS SALVOS
+        */
+
+        let users =
+            JSON.parse(
+                localStorage.getItem(
+                    "estudaJuntoUsers"
+                )
+            ) || [];
+
+
+        const existingEmail =
+            users.find(
+                user => user.email === email
+            );
+
+
+        if (existingEmail) {
+
+            showError(
+                "Este e-mail já está cadastrado."
+            );
+
+            return;
+
+        }
+
+
+        const existingUsername =
+            users.find(
+                user => user.username === username
+            );
+
+
+        if (existingUsername) {
+
+            showError(
+                "Este nome de usuário já está sendo utilizado."
+            );
+
+            return;
+
+        }
+
+
+        /*
+            CRIAR USUÁRIO
+
+            IMPORTANTE:
+            Isto é apenas para o protótipo.
+            Em uma aplicação real, a senha
+            NÃO deve ser armazenada dessa forma.
+        */
+
+        const newUser = {
+
+            id:
+                Date.now(),
+
+            name:
+                name,
+
+            username:
+                username,
+
+            email:
+                email,
+
+            password:
+                password,
+
+            bio:
+                "Estudante e participante do Estuda Junto.",
+
+            createdAt:
+                new Date().toISOString()
+
+        };
+
+
+        users.push(newUser);
+
+
+        localStorage.setItem(
+            "estudaJuntoUsers",
+            JSON.stringify(users)
+        );
+
+
+        /*
+            SALVAR PERFIL ATUAL
+        */
+
+        localStorage.setItem(
+            "estudaJuntoProfile",
+            JSON.stringify({
+
+                name: name,
+
+                username: username,
+
+                bio:
+                    "Estudante e participante do Estuda Junto."
+
+            })
+        );
+
+
+        /* SUCESSO */
+
+        showSuccess(
+            "Conta criada com sucesso! Redirecionando para o login..."
+        );
+
+
+        document
+            .getElementById("registerForm")
+            .reset();
+
+
+        setTimeout(function() {
+
+            window.location.href =
+                "login.html";
+
+        }, 1500);
+
+    }
+
+
+    /* ERRO */
+
+    function showError(message) {
+
+        const element =
+            document.getElementById(
+                "errorMessage"
+            );
+
+
+        element.textContent =
+            message;
+
+
+        element.style.display =
+            "block";
+
+    }
+
+
+    /* SUCESSO */
+
+    function showSuccess(message) {
+
+        const element =
+            document.getElementById(
+                "successMessage"
+            );
+
+
+        element.textContent =
+            message;
+
+
+        element.style.display =
+            "block";
+
+    }
+
+
+    /* ESCONDER MENSAGENS */
+
+    function hideMessages() {
+
+        document
+            .getElementById("errorMessage")
+            .style.display =
+            "none";
+
+
+        document
+            .getElementById("successMessage")
+            .style.display =
+            "none";
+
+    }
+
+
+    /* TERMOS */
+
+    function showTerms(event) {
+
+        event.preventDefault();
+
+
+        alert(
+            "Termos de uso do Estuda Junto:\n\n" +
+
+            "A plataforma tem como objetivo permitir " +
+            "que estudantes compartilhem conhecimentos " +
+            "e participem de discussões educativas.\n\n" +
+
+            "Os usuários devem respeitar os demais " +
+            "participantes e não publicar conteúdo " +
+            "ofensivo, ilegal ou inadequado."
+        );
+
+    }
+
+</script>
+
+<script src="script.js"></script>
+</body>
+
+</html>

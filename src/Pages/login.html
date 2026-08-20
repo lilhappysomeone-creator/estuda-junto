@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Entrar — Estuda Junto</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f5f7fb;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* HEADER */
+
+        header {
+            background: #2563eb;
+            color: white;
+            padding: 18px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .logo span {
+            color: #bfdbfe;
+        }
+
+        .home-btn {
+            background: white;
+            color: #2563eb;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .home-btn:hover {
+            background: #eff6ff;
+        }
+
+        /* ÁREA DE LOGIN */
+
+        .login-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 20px;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 430px;
+            background: white;
+            padding: 35px;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-icon {
+            width: 65px;
+            height: 65px;
+            background: #eff6ff;
+            color: #2563eb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 15px;
+        }
+
+        .login-header h1 {
+            font-size: 27px;
+            margin-bottom: 8px;
+        }
+
+        .login-header p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* FORMULÁRIO */
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .input-container {
+            position: relative;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 13px 45px 13px 13px;
+            border: 1px solid #d7dce2;
+            border-radius: 8px;
+            outline: none;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+
+        .form-group input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 2px #dbeafe;
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+
+        .password-button {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            color: #666;
+            font-size: 16px;
+        }
+
+        /* OPÇÕES */
+
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+            font-size: 13px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: #555;
+        }
+
+        .remember input {
+            width: 16px;
+            height: 16px;
+        }
+
+        .forgot {
+            color: #2563eb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .forgot:hover {
+            text-decoration: underline;
+        }
+
+        /* BOTÃO */
+
+        .login-button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            background: #2563eb;
+            color: white;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .login-button:hover {
+            background: #1d4ed8;
+        }
+
+        /* DIVISOR */
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 25px 0;
+            color: #999;
+            font-size: 13px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #e5e7eb;
+        }
+
+        /* CADASTRO */
+
+        .register {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .register a {
+            color: #2563eb;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .register a:hover {
+            text-decoration: underline;
+        }
+
+        /* MENSAGEM DE ERRO */
+
+        .error-message {
+            display: none;
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+            padding: 10px;
+            border-radius: 7px;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        /* MENSAGEM DE SUCESSO */
+
+        .success-message {
+            display: none;
+            background: #f0fdf4;
+            color: #16a34a;
+            border: 1px solid #bbf7d0;
+            padding: 10px;
+            border-radius: 7px;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-size: 12px;
+        }
+
+        /* RESPONSIVO */
+
+        @media (max-width: 500px) {
+
+            header {
+                padding: 16px 20px;
+            }
+
+            .login-card {
+                padding: 25px 20px;
+            }
+
+            .login-header h1 {
+                font-size: 24px;
+            }
+
+            .options {
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div
+        class="logo"
+        onclick="window.location.href='index.html'"
+    >
+        Estuda <span>Junto</span>
+    </div>
+
+
+    <button
+        class="home-btn"
+        onclick="window.location.href='index.html'"
+    >
+        Página inicial
+    </button>
+
+</header>
+
+
+<main class="login-container">
+
+
+    <div class="login-card">
+
+
+        <div class="login-header">
+
+            <div class="login-icon">
+                🎓
+            </div>
+
+            <h1>
+                Bem-vindo de volta!
+            </h1>
+
+            <p>
+                Entre na sua conta do Estuda Junto
+            </p>
+
+        </div>
+
+
+        <!-- MENSAGENS -->
+
+        <div
+            class="error-message"
+            id="errorMessage"
+        >
+        </div>
+
+
+        <div
+            class="success-message"
+            id="successMessage"
+        >
+        </div>
+
+
+        <!-- FORMULÁRIO -->
+
+        <form
+            id="loginForm"
+            onsubmit="login(event)"
+        >
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    E-mail
+                </label>
+
+                <div class="input-container">
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Digite seu e-mail"
+                        autocomplete="email"
+                        required
+                    >
+
+                    <span class="input-icon">
+                        ✉
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- SENHA -->
+
+            <div class="form-group">
+
+                <label for="password">
+                    Senha
+                </label>
+
+                <div class="input-container">
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Digite sua senha"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-button"
+                        id="passwordButton"
+                        onclick="togglePassword()"
+                    >
+                        👁
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- OPÇÕES -->
+
+            <div class="options">
+
+                <label class="remember">
+
+                    <input
+                        type="checkbox"
+                        id="remember"
+                    >
+
+                    Lembrar de mim
+
+                </label>
+
+
+                <a
+                    class="forgot"
+                    onclick="forgotPassword()"
+                >
+                    Esqueci minha senha
+                </a>
+
+            </div>
+
+
+            <!-- LOGIN -->
+
+            <button
+                type="submit"
+                class="login-button"
+            >
+                Entrar
+            </button>
+
+
+        </form>
+
+
+        <div class="divider">
+            ou
+        </div>
+
+
+        <!-- CADASTRO -->
+
+        <div class="register">
+
+            Ainda não possui uma conta?
+
+            <a href="cadastro.html">
+                Criar conta
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+<footer>
+
+    © 2026 Estuda Junto — Plataforma de aprendizado colaborativo
+
+</footer>
+
+
+<script>
+
+
+    /* MOSTRAR / OCULTAR SENHA */
+
+    function togglePassword() {
+
+        const password =
+            document.getElementById("password");
+
+        const button =
+            document.getElementById("passwordButton");
+
+
+        if (password.type === "password") {
+
+            password.type = "text";
+
+            button.textContent = "🙈";
+
+        } else {
+
+            password.type = "password";
+
+            button.textContent = "👁";
+
+        }
+
+    }
+
+
+    /* LOGIN */
+
+    function login(event) {
+
+        event.preventDefault();
+
+
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim();
+
+
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+
+        const remember =
+            document
+                .getElementById("remember")
+                .checked;
+
+
+        const error =
+            document.getElementById("errorMessage");
+
+
+        const success =
+            document.getElementById("successMessage");
+
+
+        error.style.display = "none";
+
+        success.style.display = "none";
+
+
+        /* VALIDAÇÃO */
+
+        if (!email || !password) {
+
+            showError(
+                "Preencha todos os campos."
+            );
+
+            return;
+
+        }
+
+
+        if (!email.includes("@")) {
+
+            showError(
+                "Digite um e-mail válido."
+            );
+
+            return;
+
+        }
+
+
+        if (password.length < 6) {
+
+            showError(
+                "A senha deve possuir pelo menos 6 caracteres."
+            );
+
+            return;
+
+        }
+
+
+        /*
+            LOGIN TEMPORÁRIO
+
+            Nesta versão somente frontend,
+            estamos simulando o login.
+
+            Quando o backend Node.js + MySQL
+            estiver conectado, esta parte será
+            substituída por uma requisição à API.
+        */
+
+
+        const user = {
+
+            email: email,
+
+            loggedIn: true,
+
+            loginDate: new Date().toISOString()
+
+        };
+
+
+        if (remember) {
+
+            localStorage.setItem(
+                "estudaJuntoUser",
+                JSON.stringify(user)
+            );
+
+        } else {
+
+            sessionStorage.setItem(
+                "estudaJuntoUser",
+                JSON.stringify(user)
+            );
+
+        }
+
+
+        showSuccess(
+            "Login realizado com sucesso! Redirecionando..."
+        );
+
+
+        setTimeout(function() {
+
+            window.location.href = "index.html";
+
+        }, 1200);
+
+    }
+
+
+    /* ERRO */
+
+    function showError(message) {
+
+        const error =
+            document.getElementById("errorMessage");
+
+
+        error.textContent = message;
+
+        error.style.display = "block";
+
+    }
+
+
+    /* SUCESSO */
+
+    function showSuccess(message) {
+
+        const success =
+            document.getElementById("successMessage");
+
+
+        success.textContent = message;
+
+        success.style.display = "block";
+
+    }
+
+
+    /* ESQUECI A SENHA */
+
+    function forgotPassword() {
+
+        const email =
+            prompt(
+                "Digite seu e-mail para recuperar sua senha:"
+            );
+
+
+        if (!email) {
+
+            return;
+
+        }
+
+
+        if (!email.includes("@")) {
+
+            alert(
+                "Digite um e-mail válido."
+            );
+
+            return;
+
+        }
+
+
+        alert(
+            "Em uma versão conectada ao servidor, um link de recuperação seria enviado para " +
+            email +
+            "."
+        );
+
+    }
+
+
+    /* VERIFICAR SE JÁ ESTÁ LOGADO */
+
+    window.addEventListener("DOMContentLoaded", function() {
+
+        const localUser =
+            localStorage.getItem(
+                "estudaJuntoUser"
+            );
+
+
+        if (localUser) {
+
+            /*
+                Não redirecionamos automaticamente
+                para evitar prender o usuário na página.
+            */
+
+        }
+
+    });
+
+
+</script>
+
+<script src="script.js"></script>
+</body>
+
+</html>
