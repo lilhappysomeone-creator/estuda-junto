@@ -4,7 +4,6 @@
   "description": "",
   "main": "src/main.js",
   "scripts": {
-    "dev": "vercel dev"
   },
   "keywords": [],
   "author": "",

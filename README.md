@@ -5,5 +5,5 @@
 # Executar em Dev
 
 ```sh
-pnpm run dev
+vercel dev
 ```
