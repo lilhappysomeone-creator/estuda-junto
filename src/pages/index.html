@@ -1,11 +1,272 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Index</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <title>Estuda Junto</title>
+    <link rel="stylesheet" href="/css/globals/global.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
-  <h1>Index</h1>
+    <header>
+        <div class="logo">
+            Estuda <span>Junto</span>
+        </div>
+        <div class="search">
+            <input type="text" id="searchInput" placeholder="Pesquisar discussões..." onkeyup="searchDiscussions()">
+        </div>
+
+        <div class="header-buttons">
+            <a href="/perfil" class="login-btn" id="profileHeaderButton">Perfil</a>
+            <a href="/cadastro" class="register-btn">Cadastrar</a>
+        </div>
+    </header>
+
+    <main id="homePage">
+        <div class="container">
+            <aside class="sidebar">
+                <h3>Categorias</h3>
+                <button class="category" onclick="filterCategory('Todas')">🏠 Todas</button>
+                <button class="category" onclick="filterCategory('História')">📜 História</button>
+                <button class="category" onclick="filterCategory('Matemática')">🔢 Matemática</button>
+                <button class="category" onclick="filterCategory('Ciências')">🔬 Ciências</button>
+                <button class="category" onclick="filterCategory('Português')">📚 Português</button>
+                <button class="category" onclick="filterCategory('Tecnologia')">💻 Tecnologia</button>
+                <button class="category" onclick="filterCategory('Filosofia')">🧠 Filosofia</button>
+            </aside>
+
+            <!-- CONTEÚDO -->
+            <div>
+                <div class="welcome">
+                    <h1>Olá, estudante! 👋</h1>
+                    <p>Aprenda, compartilhe conhecimento e debata com outras pessoas.</p>
+                </div>
+
+                <button class="create-btn" onclick="openModal()">+ Criar nova discussão</button>
+
+                <div class="card">
+                    <h3>Discussões recentes</h3>
+                    <div id="discussionList">
+                        <!--
+                        <div class="discussion" data-category="História" data-title="A Revolta da Vacina" onclick="openDiscussion(
+                                'A Revolta da Vacina',
+                                'História',
+                                'A Revolta da Vacina aconteceu em 1904, no Rio de Janeiro. Quais foram os principais motivos que levaram a população a se revoltar contra a vacinação obrigatória?'
+                            )">
+                            <h2>A Revolta da Vacina: quais foram suas principais causas?</h2>
+                            <p>
+                                Estou estudando a Revolta da Vacina e gostaria de entender
+                                melhor os motivos que levaram a população a se revoltar.
+                            </p>
+
+                            <div class="tags">
+                                <span class="tag">História</span>
+                                <span class="tag">Brasil</span>
+                                <span class="tag">República Velha</span>
+                            </div>
+                            <div class="discussion-info">👤 João • 💬 18 comentários • 👍 32 curtidas • 2h atrás</div>
+                        </div>
+
+
+                        <div class="discussion" data-category="Matemática" data-title="Equação do segundo grau" onclick="openDiscussion(
+                                'Equação do segundo grau',
+                                'Matemática',
+                                'Alguém poderia explicar de forma simples como funciona a fórmula de Bhaskara?'
+                            )">
+
+                            <h2>Alguém pode explicar a fórmula de Bhaskara?</h2>
+                            <p>Estou tendo dificuldade para entender equações do segundo grau.</p>
+
+                            <div class="tags">
+                                <span class="tag">Matemática</span>
+                                <span class="tag">Ensino Médio</span>
+                            </div>
+                            <div class="discussion-info">👤 Maria • 💬 12 comentários • 👍 24 curtidas • 4h atrás</div>
+                        </div>
+
+                        <div class="discussion" data-category="Ciências" data-title="Vacinas e sistema imunológico"
+                            onclick="openDiscussion(
+                                'Vacinas e sistema imunológico',
+                                'Ciências',
+                                'Como exatamente as vacinas ajudam o nosso sistema imunológico a reconhecer doenças?'
+                            )">
+
+                            <h2>Como as vacinas funcionam no sistema imunológico?</h2>
+                            <p>
+                                Gostaria de entender como nosso corpo aprende a combater
+                                determinados vírus e bactérias.
+                            </p>
+                            <div class="tags">
+                                <span class="tag">Ciências</span>
+                                <span class="tag">Biologia</span>
+                            </div>
+                            <div class="discussion-info">
+                                👤 Pedro • 💬 9 comentários • 👍 19 curtidas • 6h atrás
+                            </div>
+                        </div>
+
+                        <div class="discussion" data-category="Tecnologia" data-title="Inteligência Artificial" onclick="openDiscussion(
+                                'Inteligência Artificial',
+                                'Tecnologia',
+                                'A inteligência artificial poderá substituir algumas profissões no futuro?'
+                            )">
+                            <h2>A inteligência artificial vai substituir empregos?</h2>
+                            <p>
+                                Quero saber a opinião de vocês sobre o impacto da IA no mercado
+                                de trabalho.
+                            </p>
+                            <div class="tags">
+                                <span class="tag">Tecnologia</span>
+                                <span class="tag">IA</span>
+                            </div>
+                            <div class="discussion-info">
+                                👤 Lucas • 💬 27 comentários • 👍 41 curtidas • 1d atrás
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                </div>
+            </div>
+
+            <!--
+            <aside class="rightbar">
+                <h3>Usuários ativos</h3>
+
+                <div class="user">
+                    <div class="avatar">J</div>
+                    <div class="user-info">
+                        <strong>João</strong>
+                        <small>12 discussões</small>
+                    </div>
+                </div>
+
+                <div class="user">
+                    <div class="avatar">M</div>
+                    <div class="user-info">
+                        <strong>Maria</strong>
+                        <small>8 discussões</small>
+                    </div>
+                </div>
+
+                <div class="user">
+                    <div class="avatar">P</div>
+                    <div class="user-info">
+                        <strong>Pedro</strong>
+                        <small>15 discussões</small>
+                    </div>
+                </div>
+
+                <div class="user">
+                    <div class="avatar">L</div>
+                    <div class="user-info">
+                        <strong>Lucas</strong>
+                        <small>21 discussões</small>
+                    </div>
+                </div>
+            </aside>
+            -->
+        </div>
+        </div>
+
+        <div id="discussionPage">
+            <div class="container">
+                <main style="grid-column: 1 / -1;">
+                    <div class="card discussion-full">
+                        <span class="back" onclick="backHome()">
+                            ← Voltar para discussões
+                        </span>
+
+                        <div class="tags">
+                            <span class="tag" id="discussionCategory"></span>
+                        </div>
+
+                        <h1 id="discussionTitle"></h1>
+
+                        <div class="discussion-info">👤 João • publicado há 2 horas</div>
+                        <div class="content" id="discussionContent"></div>
+
+                        <hr>
+
+                        <h3 style="margin-top:20px;">Comentários</h3>
+
+                        <div id="comments">
+                            <div class="comment">
+                                <div class="comment-header">
+                                    <div class="avatar">M</div>
+                                    <strong>Maria</strong>
+                                </div>
+                                <p>
+                                    Acho que a principal causa foi a forma autoritária
+                                    como a vacinação foi implementada.
+                                </p>
+                            </div>
+
+                            <div class="comment">
+                                <div class="comment-header">
+                                    <div class="avatar">P</div>
+                                    <strong>Pedro</strong>
+                                </div>
+                                <p>
+                                    Concordo. Também precisamos considerar o contexto
+                                    político e social daquela época.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="comment-input">
+                            <textarea id="commentInput" placeholder="Escreva seu comentário..."></textarea>
+                            <button onclick="addComment()">Comentar</button>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <!-- MODAL CRIAR DISCUSSÃO -->
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Criar discussão</h2>
+                    <span class="close" onclick="closeModal()">
+                        ×
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <label>Título</label>
+                    <input type="text" id="newTitle" placeholder="Ex: Por que aconteceu a Revolta da Vacina?">
+                </div>
+
+                <div class="form-group">
+                    <label>Categoria</label>
+                    <select id="newCategory">
+                        <option>História</option>
+                        <option>Matemática</option>
+                        <option>Ciências</option>
+                        <option>Português</option>
+                        <option>Tecnologia</option>
+                        <option>Filosofia</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Conteúdo</label>
+                    <textarea id="newContent"
+                        placeholder="Explique sua dúvida ou apresente o assunto que deseja discutir..."></textarea>
+                </div>
+
+                <button class="publish-btn" onclick="publishDiscussion()">
+                    Publicar discussão
+                </button>
+            </div>
+        </div>
+    </main>
+    <script type="module" src="/js/header.js"></script>
+    <script type="module" src="js/script.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Meu perfil — Estuda Junto</title>
+
+    <link rel="stylesheet" href="/css/globals/global.css">
+    <link rel="stylesheet" href="/css/perfil.css">
+</head>
+
+
+<body>
+    <header>
+        <div class="logo" onclick="window.location.href='/'">
+            Estuda <span>Junto</span>
+        </div>
+
+        <div class="search">
+            <input type="text" id="searchInput" placeholder="Pesquisar discussões...">
+        </div>
+
+        <div class="header-buttons">
+            <button class="home-btn" onclick="window.location.href='/'">Início</button>
+            <button class="logout-btn" onclick="logout()">Sair</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="profile-card">
+            <div class="cover"></div>
+
+            <div class="profile-content">
+                <div class="profile-main">
+                    <div class="profile-info">
+                        <div class="avatar" id="avatar">@</div>
+
+                        <div class="name-area">
+                            <h1 id="userName">@YourName</h1>
+                            <div class="username" id="userUsername">@YourName</div>
+                        </div>
+                    </div>
+
+                    <button class="edit-btn">✏️ Editar perfil</button>
+                </div>
+
+                <p class="bio" id="userBio"></p>
+
+                <!--<div class="joined">📅 Membro desde 2026</div>-->
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number" id="discussionCount">12</div>
+                <div class="stat-label">Discussões</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number">47</div>
+
+                <div class="stat-label">Comentários</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number">156</div>
+                <div class="stat-label">Curtidas recebidas</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number">28</div>
+                <div class="stat-label">Seguidores</div>
+            </div>
+        </div>
+
+        <!-- DISCUSSÕES -->
+        <section class="section">
+            <div class="section-header">
+                <h2>Minhas discussões</h2>
+                <button class="edit-btn" onclick="window.location.href='criar.html'">+ Criar</button>
+            </div>
+
+            <div id="discussionsList">
+                <div class="discussion" onclick="openDiscussion()">
+                    <span class="category">História</span>
+                    <h3>A Revolta da Vacina: quais foram suas principais causas?</h3>
+                    <p>
+                        Gostaria de entender melhor os motivos que levaram
+                        à Revolta da Vacina em 1904.
+                    </p>
+
+                    <div class="discussion-info">
+                        <span>💬 8 comentários</span>
+                        <span>👍 32 curtidas</span>
+                        <span>há 2 horas</span>
+                    </div>
+                </div>
+
+                <div class="discussion">
+                    <span class="category">Tecnologia</span>
+                    <h3>Qual linguagem de programação devo aprender primeiro?</h3>
+                    <p>
+                        Estou começando a estudar programação e gostaria
+                        de saber qual linguagem é mais indicada.
+                    </p>
+
+                    <div class="discussion-info">
+                        <span>💬 15 comentários</span>
+                        <span>👍 24 curtidas</span>
+                        <span>ontem</span>
+                    </div>
+                </div>
+
+                <div class="discussion">
+                    <span class="category">Ciências</span>
+                    <h3>Como funciona a fotossíntese?</h3>
+                    <p>
+                        Alguém poderia explicar de uma maneira simples
+                        como acontece o processo de fotossíntese?
+                    </p>
+
+                    <div class="discussion-info">
+                        <span>💬 6 comentários</span>
+                        <span>👍 18 curtidas</span>
+                        <span>há 3 dias</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <h2>🏆 Conquistas</h2>
+            </div>
+
+            <div class="badges">
+                <div class="badge">
+                    <div class="badge-icon">💬</div>
+                    <div>
+                        <strong>Primeiro comentário</strong>
+                        <span>Fez seu primeiro comentário</span>
+                    </div>
+                </div>
+
+                <div class="badge">
+                    <div class="badge-icon">📝</div>
+                    <div>
+                        <strong>Primeiro tópico</strong>
+
+                        <span>Criou sua primeira discussão</span>
+                    </div>
+                </div>
+
+                <div class="badge">
+                    <div class="badge-icon">⭐</div>
+                    <div>
+                        <strong>Participativo</strong>
+                        <span>Recebeu 100 curtidas</span>
+                    </div>
+                </div>
+                <div class="badge">
+                    <div class="badge-icon">🎓</div>
+                    <div>
+                        <strong>Estudante ativo</strong>
+                        <span>Participou de várias discussões</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <h2>Editar perfil</h2>
+
+            <div class="form-group">
+                <label for="editName">Nome</label>
+                <input type="text" id="editName" value="">
+            </div>
+
+            <div class="form-group">
+                <label for="editUsername">Nome de usuário</label>
+                <input type="text" id="editUsername" value="">
+            </div>
+
+            <div class="form-group">
+                <label for="editBio">Biografia</label>
+                <textarea id="editBio"></textarea>
+            </div>
+
+            <div class="modal-buttons">
+                <button class="cancel-btn">Cancelar</button>
+                <button class="save-btn">Salvar alterações</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/js/header.js"></script>
+    <script type="module" src="/js/perfil.js"></script>
+</body>
+
+</html>

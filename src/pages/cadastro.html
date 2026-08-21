@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Criar conta — Estuda Junto</title>
+
+    <link rel="stylesheet" href="/css/globals/global.css">
+    <link rel="stylesheet" href="/css/cadastro.css">
+    <link rel="stylesheet" href="/css/login-cadastro.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo" onclick="window.location.href='/'">
+            Estuda <span>Junto</span>
+        </div>
+    </header>
+
+    <main class="form-container">
+        <div class="form-card">
+            <div class="form-header">
+                <div class="form-icon">🎓</div>
+                <h1>Criar sua conta</h1>
+                <p>Faça parte do Estuda Junto e participe das discussões com outros estudantes.</p>
+            </div>
+
+            <div class="error-message" id="errorMessage"></div>
+            <div class="success-message" id="successMessage"></div>
+
+            <form id="registerForm" onsubmit="register(event)">
+                <div class="form-group">
+                    <label for="name">Nome completo</label>
+                    <input type="text" id="name" placeholder="Digite seu nome" autocomplete="name" maxlength="100"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="username">Nome de usuário</label>
+                    <input type="text" id="username" placeholder="Ex: joao123" autocomplete="username" maxlength="30"
+                        required>
+
+                    <div class="help">Use apenas letras, números e "_".</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" placeholder="Digite seu e-mail" autocomplete="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <div class="password-container">
+                        <input type="password" id="password" placeholder="Crie uma senha" autocomplete="new-password"
+                            minlength="6" required>
+                    </div>
+
+                    <div class="password-strength">
+                        <div class="password-strength-bar" id="strengthBar"></div>
+                    </div>
+
+                    <div class="strength-text" id="strengthText">Digite uma senha.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirmar senha</label>
+
+                    <div class="password-container">
+                        <input type="password" id="confirmPassword" placeholder="Digite a senha novamente"
+                            autocomplete="new-password" required>
+                    </div>
+                </div>
+
+                <div class="terms">
+                    <input type="checkbox" id="terms" required>
+
+                    <label for="terms">
+                        Concordo com os
+                        <a href="#" onclick="showTerms(event)">termos de uso</a>
+                        e a política de privacidade
+                        do Estuda Junto.
+                    </label>
+                </div>
+
+                <button type="submit" class="register-button">Criar minha conta</button>
+            </form>
+
+            <div class="login">
+                Já possui uma conta?
+                <a href="/login">Entrar</a>
+            </div>
+        </div>
+    </main>
+    <footer>
+        © 2026 Estuda Junto — Plataforma de aprendizado colaborativo
+    </footer>
+
+    <script src="/js/cadastro.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

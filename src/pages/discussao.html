@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Discussão — Estuda Junto</title>
+
+    <link rel="stylesheet" href="/css/globals/global.css">
+    <link rel="stylesheet" href="/css/discussao.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo" onclick="window.location.href='index.html'">
+            Estuda <span>Junto</span>
+        </div>
+
+        <div class="search">
+            <input type="text" placeholder="Pesquisar discussões..." id="searchInput">
+        </div>
+
+        <div class="header-buttons">
+            <button class="login-btn">Entrar</button>
+            <button class="register-btn">Cadastrar</button>
+        </div>
+    </header>
+
+
+    <div class="container">
+        <a href="index.html" class="back">
+            ← Voltar para discussões
+        </a>
+
+        <article class="discussion">
+            <span class="category">
+                História
+            </span>
+
+            <h1>A Revolta da Vacina: quais foram suas principais causas?</h1>
+
+            <div class="author">
+                <div class="avatar">J</div>
+
+                <div>
+                    <strong>João</strong>
+                    <span>Publicado há 2 horas</span>
+                </div>
+            </div>
+
+            <div class="content">
+                <p>
+                    Estou estudando a Revolta da Vacina e gostaria de entender
+                    melhor os motivos que levaram a população do Rio de Janeiro
+                    a se revoltar contra a vacinação obrigatória.
+                </p>
+                <p>
+                    Pelo que pesquisei, o conflito aconteceu em 1904 e estava
+                    relacionado à campanha de vacinação obrigatória contra a
+                    varíola.
+                </p>
+                <p>
+                    Quais vocês consideram que foram os principais motivos
+                    para a Revolta da Vacina?
+                </p>
+            </div>
+
+
+            <div class="tags">
+                <span class="tag">História</span>
+                <span class="tag">Brasil</span>
+                <span class="tag">República Velha</span>
+                <span class="tag">Revolta da Vacina</span>
+            </div>
+
+            <div class="actions">
+                <button class="action-btn" id="likeButton" onclick="likeDiscussion()">
+                    👍 Curtir <span id="likeCount">32</span>
+                </button>
+
+                <button class="action-btn" onclick="document.getElementById('commentInput').focus()">💬
+                    Comentar</button>
+                <button class="action-btn" onclick="shareDiscussion()">🔗 Compartilhar</button>
+                <button class="action-btn" onclick="reportDiscussion()">🚩 Denunciar</button>
+            </div>
+        </article>
+
+        <section class="comments-section">
+            <h2>💬 Comentários (<span id="commentCount">3</span>)</h2>
+
+            <div class="comment">
+                <div class="comment-header">
+                    <div class="avatar">M</div>
+                    <div class="comment-author">
+                        <strong>Maria</strong>
+                        <span class="comment-date">há 1 hora</span>
+                    </div>
+                </div>
+
+                <div class="comment-text">
+                    Acho que um dos principais motivos foi a forma como a
+                    vacinação obrigatória foi implementada pelo governo.
+                    A população também tinha pouco acesso a informações
+                    sobre a vacina.
+                </div>
+
+                <div class="comment-actions">
+                    <button onclick="likeComment(this)">👍 Curtir</button>
+                    <button onclick="showReply(this)">↩ Responder</button>
+                </div>
+
+                <div class="reply-box">
+                    <textarea placeholder="Escreva sua resposta..."></textarea>
+                    <button onclick="sendReply(this)">Responder</button>
+                </div>
+            </div>
+
+            <div class="comment">
+                <div class="comment-header">
+                    <div class="avatar">P</div>
+                    <div class="comment-author">
+                        <strong>Pedro</strong>
+                        <span class="comment-date">há 48 minutos</span>
+                    </div>
+                </div>
+
+                <div class="comment-text">
+                    Além da vacinação obrigatória, existiam problemas sociais
+                    e políticos. Muitas pessoas estavam insatisfeitas com as
+                    reformas realizadas no Rio de Janeiro.
+                </div>
+
+                <div class="comment-actions">
+                    <button onclick="likeComment(this)">👍 Curtir</button>
+                    <button onclick="showReply(this)">↩ Responder</button>
+                </div>
+
+                <div class="reply-box">
+                    <textarea placeholder="Escreva sua resposta..."></textarea>
+                    <button onclick="sendReply(this)">Responder</button>
+                </div>
+            </div>
+
+            <div class="comment">
+                <div class="comment-header">
+                    <div class="avatar">L</div>
+                    <div class="comment-author">
+                        <strong>Lucas</strong>
+                        <span class="comment-date">há 20 minutos</span>
+                    </div>
+                </div>
+
+                <div class="comment-text">
+                    Também acho importante lembrar que a população não
+                    participou diretamente das decisões do governo.
+                    Isso aumentou a insatisfação e contribuiu para o conflito.
+                </div>
+
+                <div class="comment-actions">
+                    <button onclick="likeComment(this)">👍 Curtir</button>
+                    <button onclick="showReply(this)">↩ Responder</button>
+                </div>
+
+                <div class="reply-box">
+                    <textarea placeholder="Escreva sua resposta..."></textarea>
+                    <button onclick="sendReply(this)">Responder</button>
+                </div>
+            </div>
+
+            <div class="new-comment">
+                <h3>Deixe sua opinião</h3>
+                <textarea id="commentInput" placeholder="Escreva seu comentário..."></textarea>
+                <button class="comment-btn" onclick="addComment()">Publicar comentário</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="/js/discussao.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

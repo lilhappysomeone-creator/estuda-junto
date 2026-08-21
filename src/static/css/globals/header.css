@@ -1,0 +1,65 @@
+header {
+  background-color: var(--header-background-color);
+  color: var(--header-foreground-color);
+  padding: 18px 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.logo span {
+  color: #bfdbfe;
+}
+
+.search {
+  flex: 1;
+  max-width: 600px;
+  position: relative;
+}
+
+.search input {
+  width: 100%;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+  font-size: 15px;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.login-btn,
+.register-btn {
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.login-btn {
+  background: transparent;
+  color: white;
+}
+.register-btn {
+  background: white;
+  color: var(--header-background-color);
+}
+
+.home-btn {
+  background: white;
+  color: #2563eb;
+  border: none;
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Criar discussão — Estuda Junto</title>
+
+    <link rel="stylesheet" href="css/globals/global.css">
+    <link rel="stylesheet" href="css/criar.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo" onclick="window.location.href='index.html'">
+            Estuda <span>Junto</span>
+        </div>
+
+        <div class="search">
+            <input type="text" id="searchInput" placeholder="Pesquisar discussões...">
+        </div>
+
+        <div class="header-buttons">
+            <button class="login-btn" onclick="alert('Página de login em desenvolvimento.')">Entrar</button>
+            <button class="register-btn" onclick="alert('Página de cadastro em desenvolvimento.')">Cadastrar</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <a href="index.html" class="back">← Voltar para a página inicial</a>
+        <div class="card">
+            <h1>Criar nova discussão</h1>
+            <p class="subtitle">
+                Compartilhe uma dúvida, faça uma pergunta ou inicie
+                uma discussão sobre um assunto que você conhece.
+            </p>
+
+            <!-- TÍTULO -->
+            <div class="form-group">
+                <label for="title">Título da discussão</label>
+                <p class="description">Escolha um título claro que explique o assunto da sua discussão.</p>
+                <input type="text" id="title" maxlength="150" placeholder="Ex: Quais foram as causas da Revolta da Vacina?">
+            </div>
+
+            <!-- CATEGORIA -->
+            <div class="form-group">
+                <label for="category">Categoria</label>
+                <p class="description">Escolha a categoria que melhor representa sua discussão.</p>
+
+                <select id="category">
+                    <option value="">Selecione uma categoria</option>
+                    <option value="História">📜 História</option>
+                    <option value="Matemática">🔢 Matemática</option>
+                    <option value="Ciências">🔬 Ciências</option>
+                    <option value="Português">📚 Português</option>
+                    <option value="Tecnologia">💻 Tecnologia</option>
+                    <option value="Filosofia">🧠 Filosofia</option>
+                    <option value="Geografia">🌎 Geografia</option>
+                    <option value="Outros">📌 Outros</option>
+                </select>
+            </div>
+
+            <!-- TAGS -->
+            <div class="form-group">
+                <label>Tags</label>
+                <p class="description">Adicione palavras que ajudam a identificar sua discussão.</p>
+                <div class="tags-container">
+                    <input type="text" id="tagInput" placeholder="Ex: Brasil" maxlength="30">
+                    <button type="button" class="add-tag" onclick="addTag()">+ Adicionar</button>
+                </div>
+
+                <div id="tagsList"></div>
+            </div>
+            
+            <!-- CONTEÚDO -->
+            <div class="form-group">
+                <label for="content">Conteúdo da discussão</label>
+
+                <p class="description">
+                    Explique sua dúvida, apresente seu ponto de vista
+                    ou desenvolva o assunto que deseja discutir.
+                </p>
+                <textarea id="content" placeholder="Escreva aqui o conteúdo da sua discussão..."></textarea>
+            </div>
+
+            <!-- OPÇÕES -->
+            <div class="options">
+                <div class="option">
+                    <input type="checkbox" id="allowComments" checked>
+                    <label for="allowComments">Permitir comentários</label>
+                </div>
+
+                <div class="option">
+                    <input type="checkbox" id="notifyReplies" checked>
+                    <label for="notifyReplies">Receber notificações de respostas</label>
+                </div>
+            </div>
+
+            <!-- BOTÕES -->
+            <div class="buttons">
+                <button type="button" class="cancel-btn" onclick="cancelDiscussion()">Cancelar</button>
+                <button type="button" class="publish-btn" onclick="publishDiscussion()">Publicar discussão</button>
+            </div>
+        </div>
+
+        <!-- PREVIEW -->
+        <div class="preview" id="preview">
+            <h2>Pré-visualização</h2>
+            <div class="preview-title" id="previewTitle"></div>
+            <div class="tags" id="previewTags"></div>
+            <div class="preview-content" id="previewContent"></div>
+        </div>
+    </div>
+
+
+    <script src="/js/criar.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
