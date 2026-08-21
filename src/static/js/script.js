@@ -1,3 +1,5 @@
+import { getCookie } from "./globals/cookies.js";
+
 function openModal() {
   document.getElementById("modal").style.display = "flex";
 }
@@ -159,3 +161,72 @@ window.onclick = function (event) {
     closeModal();
   }
 };
+
+/*
+<div class="discussion" data-category="História" data-title="A Revolta da Vacina" onclick="openDiscussion(
+    'A Revolta da Vacina',
+    'História',
+    'A Revolta da Vacina aconteceu em 1904, no Rio de Janeiro. Quais foram os principais motivos que levaram a população a se revoltar contra a vacinação obrigatória?'
+)">
+<h2>A Revolta da Vacina: quais foram suas principais causas?</h2>
+<p>
+    Estou estudando a Revolta da Vacina e gostaria de entender
+    melhor os motivos que levaram a população a se revoltar.
+</p>
+
+    <div class="tags">
+        <span class="tag">História</span>
+        <span class="tag">Brasil</span>
+        <span class="tag">República Velha</span>
+    </div>
+    <div class="discussion-info">👤 João • 💬 18 comentários • 👍 32 curtidas • 2h atrás</div>
+</div>
+*/
+
+async function getDiscussions() {
+  const response = await fetch("/api/discussions");
+  const data = await response.json();
+  
+  for (const discussion of data) {
+    const DIV_discussion = document.createElement("div");
+    DIV_discussion.className = "discussion";
+    
+    const H2_title = document.createElement("h2");
+    H2_title.innerText = discussion.title;
+
+    const P_question = document.createElement("p");
+    P_question.innerText = discussion.question;
+
+    const DIV_tags = document.createElement("div");
+    DIV_tags.className = "tags";
+
+    for (const tag of discussion.tags) {
+      const SPAN_tag = document.createElement("span");
+      SPAN_tag.className = "tag";
+      SPAN_tag.innerText = tag;
+
+      DIV_tags.appendChild(SPAN_tag);
+    }
+
+    const DIV_info = document.createElement("div");
+    DIV_info.className = "discussion-info";
+    DIV_info.innerText = `${discussion.author} • ${discussion.comments} comentários • 👍 ${discussion.likes} curtidas • ${discussion.created_at}`;
+
+    DIV_discussion.appendChild(H2_title);
+    DIV_discussion.appendChild(P_question);
+    DIV_discussion.appendChild(DIV_tags);
+    DIV_discussion.appendChild(DIV_info);
+
+    document.querySelector("div#discussionList").appendChild(DIV_discussion);
+  }
+}
+
+(async function() {
+  const username = await getCookie("usr");
+  const token    = await getCookie("login_");
+
+  if (username && token)
+    document.querySelector(".welcome h1").innerText = `Olá, ${username.value}! 👋`;
+
+  getDiscussions();
+})();

@@ -1,5 +1,7 @@
 /* LOGIN */
-function login(event) {
+async function login(event) {
+  // TODO: implementar 'lembrar de mim'
+
   event.preventDefault();
 
   const email = document.getElementById("email").value.trim();
@@ -11,7 +13,6 @@ function login(event) {
   error.style.display = "none";
   success.style.display = "none";
 
-  /* VALIDAÇÃO */
   if (!email || !password) {
     showError("Preencha todos os campos.");
     return;
@@ -27,34 +28,32 @@ function login(event) {
     return;
   }
 
-  /*
-      LOGIN TEMPORÁRIO
-
-      Nesta versão somente frontend,
-      estamos simulando o login.
-
-      Quando o backend Node.js + MySQL
-      estiver conectado, esta parte será
-      substituída por uma requisição à API.
-  */
-
   const user = {
-    email: email,
-    loggedIn: true,
-    loginDate: new Date().toISOString()
+    email,
+    password
   };
 
-  if (remember) {
-    localStorage.setItem("estudaJuntoUser", JSON.stringify(user));
-  } else {
-    sessionStorage.setItem("estudaJuntoUser", JSON.stringify(user));
-  }
+  await fetch("/api/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(user)
+  })
+  .then(res => res.json())
+  .then(dat => {
+    if (dat.status !== 202)
+        throw { message: dat.message };
 
-  showSuccess("Login realizado com sucesso! Redirecionando...");
-
-  setTimeout(function () {
-    window.location.href = "index.html";
-  }, 1200);
+    cookieStore.set("usr", dat.username);
+    cookieStore.set("login_", dat.login_token);
+    showSuccess("Contra Criada! Você será redirecionado em instantes");
+    setTimeout(() => location.href = "/", 3000);
+  })
+  .catch(err => {
+    console.error(err);
+    showError(err.message);
+  });
 }
 
 /* ERRO */
@@ -88,14 +87,10 @@ function forgotPassword() {
 }
 
 /* VERIFICAR SE JÁ ESTÁ LOGADO */
-window.addEventListener("DOMContentLoaded", function () {
-  const localUser = localStorage.getItem("estudaJuntoUser");
+window.addEventListener("DOMContentLoaded", async function () {
+  const username = await cookieStore.get("usr");
+  const token    = await cookieStore.get("login_");
 
-  if (localUser) {
-    /*
-        Não redirecionamos automaticamente
-        para evitar prender o usuário na página.
-    */
-    // HAHAI
-  }
+  if (username && token)
+    location.href = "/";
 });

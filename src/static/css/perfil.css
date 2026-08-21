@@ -27,7 +27,8 @@ header .logout-btn {
 
 /* PERFIL */
 .profile-card {
-  background: white;
+  background: var(--background-highlight-color);
+  color: var(--foreground-color);
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
@@ -100,7 +101,7 @@ header .logout-btn {
 
 .bio {
   margin-top: 20px;
-  color: #555;
+  color: var(--foreground-color);
   line-height: 1.6;
   max-width: 700px;
 }
@@ -120,7 +121,7 @@ header .logout-btn {
 }
 
 .stat {
-  background: white;
+  background: var(--background-highlight-color);
   border-radius: 10px;
   padding: 20px;
   text-align: center;
@@ -130,7 +131,7 @@ header .logout-btn {
 .stat-number {
   font-size: 25px;
   font-weight: bold;
-  color: #2563eb;
+  color: var(--foreground-color);
 }
 
 .stat-label {
@@ -143,7 +144,7 @@ header .logout-btn {
 
 .section {
   margin-top: 25px;
-  background: white;
+  background: var(--background-highlight-color);
   border-radius: 12px;
   padding: 25px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
@@ -219,8 +220,8 @@ header .logout-btn {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: #f8fafc;
-  border: 1px solid #e5e7eb;
+  background: var(--background-color);
+  border: none;
   padding: 12px 15px;
   border-radius: 9px;
 }
@@ -253,7 +254,7 @@ header .logout-btn {
 }
 
 .modal-content {
-  background: white;
+  background: var(--background-color);
   width: 100%;
   max-width: 500px;
   border-radius: 12px;
@@ -279,7 +280,7 @@ header .logout-btn {
 .form-group textarea {
   width: 100%;
   padding: 11px;
-  border: 1px solid #ddd;
+  border: none;
   border-radius: 7px;
   outline: none;
 }

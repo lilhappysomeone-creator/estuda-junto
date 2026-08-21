@@ -14,7 +14,7 @@
 
 <body>
     <header>
-        <div class="logo" onclick="window.location.href='index.html'">
+        <div class="logo" onclick="window.location.href='/'">
             Estuda <span>Junto</span>
         </div>
 
@@ -23,7 +23,7 @@
         </div>
 
         <div class="header-buttons">
-            <button class="home-btn" onclick="window.location.href='index.html'">Início</button>
+            <button class="home-btn" onclick="window.location.href='/'">Início</button>
             <button class="logout-btn" onclick="logout()">Sair</button>
         </div>
     </header>
@@ -35,24 +35,20 @@
             <div class="profile-content">
                 <div class="profile-main">
                     <div class="profile-info">
-                        <div class="avatar" id="avatar">K</div>
+                        <div class="avatar" id="avatar">@</div>
 
                         <div class="name-area">
-                            <h1 id="userName">Karlos</h1>
-                            <div class="username" id="userUsername">@karlos</div>
+                            <h1 id="userName">@YourName</h1>
+                            <div class="username" id="userUsername">@YourName</div>
                         </div>
                     </div>
 
-                    <button class="edit-btn" onclick="openEditModal()">✏️ Editar perfil</button>
+                    <button class="edit-btn">✏️ Editar perfil</button>
                 </div>
 
-                <p class="bio" id="userBio">
-                    Estudante e participante do Estuda Junto.
-                    Gosto de aprender, compartilhar conhecimentos
-                    e participar de discussões.
-                </p>
+                <p class="bio" id="userBio"></p>
 
-                <div class="joined">📅 Membro desde 2026</div>
+                <!--<div class="joined">📅 Membro desde 2026</div>-->
             </div>
         </div>
 
@@ -181,30 +177,28 @@
 
             <div class="form-group">
                 <label for="editName">Nome</label>
-                <input type="text" id="editName" value="Karlos">
+                <input type="text" id="editName" value="">
             </div>
 
             <div class="form-group">
                 <label for="editUsername">Nome de usuário</label>
-                <input type="text" id="editUsername" value="karlos">
+                <input type="text" id="editUsername" value="">
             </div>
 
             <div class="form-group">
                 <label for="editBio">Biografia</label>
-                <textarea id="editBio">
-                    Estudante e participante do Estuda Junto. Gosto de aprender, compartilhar conhecimentos e participar de discussões.
-                </textarea>
+                <textarea id="editBio"></textarea>
             </div>
 
             <div class="modal-buttons">
-                <button class="cancel-btn" onclick="closeEditModal()">Cancelar</button>
-                <button class="save-btn" onclick="saveProfile()">Salvar alterações</button>
+                <button class="cancel-btn">Cancelar</button>
+                <button class="save-btn">Salvar alterações</button>
             </div>
         </div>
     </div>
 
-    <script src="/js/perfil.js"></script>
-    <script src="script.js"></script>
+    <script type="module" src="/js/header.js"></script>
+    <script type="module" src="/js/perfil.js"></script>
 </body>
 
 </html>
