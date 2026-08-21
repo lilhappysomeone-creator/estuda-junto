@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Entrar — Estuda Junto</title>
+
+    <link rel="stylesheet" href="/css/globals/global.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/login-cadastro.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo" onclick="window.location.href='/'">
+            Estuda <span>Junto</span>
+        </div>
+    </header>
+
+    <main class="form-container">
+        <div class="form-card">
+            <div class="form-header">
+                <div class="form-icon">🎓</div>
+                <h1>Bem-vindo de volta!</h1>
+                <p>Entre na sua conta do Estuda Junto</p>
+            </div>
+
+            <div class="error-message" id="errorMessage"></div>
+            <div class="success-message" id="successMessage"></div>
+
+            <form id="loginForm" onsubmit="login(event)">
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <div class="input-container">
+                        <input type="email" id="email" placeholder="Digite seu e-mail" autocomplete="email" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <div class="input-container">
+                        <input type="password" id="password" placeholder="Digite sua senha"
+                            autocomplete="current-password" required>
+                    </div>
+                </div>
+
+                <div class="options">
+                    <label class="remember">
+                        <input type="checkbox" id="remember">Lembrar de mim
+                    </label>
+
+                    <a class="forgot" onclick="forgotPassword()">Esqueci minha senha</a>
+                </div>
+
+                <button type="submit" class="login-button">Entrar</button>
+            </form>
+
+            <div class="divider">ou</div>
+
+            <div class="register">
+                Ainda não possui uma conta?
+                <a href="/cadastro">Criar conta</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        © 2026 Estuda Junto — Plataforma de aprendizado colaborativo
+    </footer>
+
+    <script src="/js/login.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

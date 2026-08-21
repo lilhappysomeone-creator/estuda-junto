@@ -1,0 +1,182 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.register-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px;
+}
+
+.register-card {
+  width: 100%;
+  max-width: 480px;
+  background: var(--darker-background-color);
+  color: var(--darker-foreground-color);
+  padding: 35px;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, .08);
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.register-icon {
+  width: 65px;
+  height: 65px;
+  background: #eff6ff;
+  color: #2563eb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  margin: 0 auto 15px;
+}
+
+.register-header h1 {
+  font-size: 27px;
+  margin-bottom: 8px;
+}
+
+.register-header p {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* FORM */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-size: 14px;
+ }
+
+.help {
+  color: #888;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* SENHA */
+.password-container {
+  position: relative;
+}
+
+.password-container input {
+  padding-right: 45px;
+}
+
+.password-button {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  color: #666;
+}
+
+/* FORÇA DA SENHA */
+.password-strength {
+  height: 5px;
+  background: #e5e7eb;
+  border-radius: 5px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.password-strength-bar {
+  height: 100%;
+  width: 0;
+  transition: .3s;
+}
+
+.strength-text {
+  font-size: 12px;
+  margin-top: 5px;
+  color: #777;
+}
+
+/* TERMOS */
+.terms {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: #555;
+  margin: 20px 0;
+  line-height: 1.4;
+}
+
+.terms input {
+  margin-top: 3px;
+  width: 16px;
+  height: 16px;
+}
+
+.terms a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.terms a:hover {
+  text-decoration: underline;
+}
+
+/* BOTÃO */
+.register-button {
+  width: 100%;
+  padding: 13px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.register-button:hover {
+  background: #1d4ed8;
+}
+
+/* LOGIN */
+.login {
+  text-align: center;
+  margin-top: 22px;
+  color: #666;
+  font-size: 14px;
+}
+
+.login a {
+  color: #2563eb;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.login a:hover {
+  text-decoration: underline;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+  font-size: 12px;
+}
