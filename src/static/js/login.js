@@ -1,7 +1,9 @@
-/* LOGIN */
+import { setCookie } from "./globals/cookies.js";
+import sender from "./globals/data-send.js";
+
+document.querySelector("#loginForm").addEventListener("click", login);
 async function login(event) {
   // TODO: implementar 'lembrar de mim'
-
   event.preventDefault();
 
   const email = document.getElementById("email").value.trim();
@@ -33,7 +35,27 @@ async function login(event) {
     password
   };
 
-  await fetch("/api/login", {
+  document.querySelector(".login-button").disabled = true;
+  try {
+    const data = await sender.post("/api/login", user);
+    console.log(data);
+
+    if (data.status !== 202)
+      throw { message: data.message };
+
+    await setCookie("usr", data.username);
+    await setCookie("login_", data.login_token);
+
+    showSuccess("Conectado! Você será redirecionado em instantes");
+    setTimeout(() => location.href = "/", 3000);
+  }
+  catch (err) {
+    console.error(err);
+    showError(err.message);
+    document.querySelector(".login-button").disabled = false;
+  }
+
+  /*await fetch("/api/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -54,7 +76,8 @@ async function login(event) {
     console.error(err);
     showError(err.message);
   });
-}
+  */
+};
 
 /* ERRO */
 function showError(message) {

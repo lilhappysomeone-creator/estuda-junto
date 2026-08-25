@@ -30,7 +30,7 @@
             <div class="error-message" id="errorMessage"></div>
             <div class="success-message" id="successMessage"></div>
 
-            <form id="loginForm" onsubmit="login(event)">
+            <form id="loginForm">
                 <div class="form-group">
                     <label for="email">E-mail</label>
                     <div class="input-container">
@@ -54,7 +54,7 @@
                     <a class="forgot" onclick="forgotPassword()">Esqueci minha senha</a>
                 </div>
 
-                <button type="submit" class="login-button">Entrar</button>
+                <input type="submit" class="login-button" value="Entrar" />
             </form>
 
             <div class="divider">ou</div>
@@ -70,7 +70,7 @@
         © 2026 Estuda Junto — Plataforma de aprendizado colaborativo
     </footer>
 
-    <script src="/js/login.js"></script>
+    <script type="module" src="/js/login.js"></script>
     <script src="script.js"></script>
 </body>
 

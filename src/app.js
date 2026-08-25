@@ -17,6 +17,7 @@ import { POSTlogin } from "./routes/api/login.js";
 import { GETdiscussions } from "./routes/api/discussions.js";
 import { POSTgetPublicUserInfo } from "./routes/api/public-user-info.js";
 import { POSTupdateUserData } from "./routes/api/update-user-data.js";
+import { POSTcreateDiscussion } from "./routes/api/create-discussion.js";
 
 const app = express();
 
@@ -33,8 +34,9 @@ app.post("/api/create-user", POSTcreateUser);
 app.post("/api/login", POSTlogin);
 app.post("/api/public-user-info", POSTgetPublicUserInfo);
 app.post("/api/update-user-data", POSTupdateUserData);
+app.post("/api/discussions/create", POSTcreateDiscussion);
+app.get("/api/discussions/", GETdiscussions);
 app.get("/api/users", GETusers);
-app.get("/api/discussions", GETdiscussions);
 
 //app.use(notFound);
 app.use((req, res, next) => {

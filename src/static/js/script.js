@@ -1,15 +1,17 @@
 import { getCookie } from "./globals/cookies.js";
-
-function openModal() {
-  document.getElementById("modal").style.display = "flex";
-}
-
-function closeModal() {
-  document.getElementById("modal").style.display = "none";
-}
+import sender from "./globals/data-send.js";
 
 /* PUBLICAR DISCUSSÃO */
-function publishDiscussion() {
+async function publishDiscussion() {
+  // ...
+  const username = await getCookie("usr");
+  const token = await getCookie("login_");
+  
+  if (!username || !token) {
+    alert("Você precisa está conectado para fazer uma discussão");
+    return;
+  }
+
   const title = document.getElementById("newTitle").value.trim();
   const category = document.getElementById("newCategory").value;
   const content = document.getElementById("newContent").value.trim();
@@ -20,54 +22,75 @@ function publishDiscussion() {
   }
 
   const discussionList = document.getElementById("discussionList");
-  const newDiscussion = document.createElement("div");
+  
+  const DIV_newDiscussion = document.createElement("div");
+  DIV_newDiscussion.className = "discussion";
+  DIV_newDiscussion.dataset.category = category;
+  DIV_newDiscussion.dataset.title = title;
 
-  newDiscussion.className = "discussion";
-  newDiscussion.dataset.category = category;
-  newDiscussion.dataset.title = title;
+  const H2_title = document.createElement("h2");
+  H2_title.innerText = title;
 
-  newDiscussion.innerHTML = `
-            <h2>${escapeHTML(title)}</h2>
-            <p>
-                ${escapeHTML(content)}
-            </p>
+  const P_content = document.createElement("p");
+  P_content.innerHTML = content;
 
-            <div class="tags">
-                <span class="tag">
-                    ${escapeHTML(category)}
-                </span>
-            </div>
+  const DIV_tags = document.createElement("div");
+  DIV_tags.className = "tags";
 
-            <div class="discussion-info">
-                👤 Você • 💬 0 comentários • 👍 0 curtidas • agora
-            </div>
-        `;
+  const SPAN_tag = document.createElement("span");
+  SPAN_tag.innerText = category;
 
-  newDiscussion.onclick = function () {
-    openDiscussion(
-      title,
-      category,
-      content
-    );
+  const DIV_discussionInfo = document.createElement("div");
+  DIV_discussionInfo.className = "discussion-info";
+  DIV_discussionInfo.innerText = `👤 ${username.value} • 💬 0 comentários • 👍 0 curtidas • agora`;
 
+  DIV_tags.appendChild(SPAN_tag);
+
+  DIV_newDiscussion.appendChild(H2_title);
+  DIV_newDiscussion.appendChild(P_content);
+  DIV_newDiscussion.appendChild(DIV_tags);
+  DIV_newDiscussion.appendChild(DIV_discussionInfo);
+  
+  DIV_newDiscussion.onclick = function () {
+    openDiscussion(title, category, content);
   };
 
-  discussionList.prepend(newDiscussion);
+  discussionList.prepend(DIV_newDiscussion);
   document.getElementById("newTitle").value = "";
   document.getElementById("newContent").value = "";
 
-  closeModal();
-  alert("Discussão publicada com sucesso!");
+  try {
+    const data = await sender.post("/api/discussions/create", {
+      username: username.value,
+      token: token.value,
+      discussion: {
+        title: title,
+        question: content
+      }
+    });
 
+    console.log(data);
+  }
+  catch (err) {
+    console.error(err);
+  }
+
+  document.getElementById("modal").style.display = "none";
+  alert("Discussão publicada com sucesso!");
 }
 
-/* ABRIR DISCUSSÃO */
-function openDiscussion(
-  title,
-  category,
-  content
-) {
+document.querySelector(".create-btn").addEventListener("click", function openModal() {
+  document.getElementById("modal").style.display = "flex";
+});
 
+document.querySelector(".close").addEventListener("click", function closeModal() {
+  document.getElementById("modal").style.display = "none";
+});
+
+document.querySelector(".publish-btn").addEventListener("click", publishDiscussion);
+
+/* ABRIR DISCUSSÃO */
+function openDiscussion(title, category, content) {
   document.getElementById("homePage").style.display = "none";
   document.getElementById("discussionPage").style.display = "block";
   document.getElementById("discussionTitle").textContent = title;
@@ -184,7 +207,7 @@ window.onclick = function (event) {
 */
 
 async function getDiscussions() {
-  const response = await fetch("/api/discussions");
+  const response = await fetch("/api/discussions/");
   const data = await response.json();
   
   for (const discussion of data) {
@@ -217,7 +240,7 @@ async function getDiscussions() {
     DIV_discussion.appendChild(DIV_tags);
     DIV_discussion.appendChild(DIV_info);
 
-    document.querySelector("div#discussionList").appendChild(DIV_discussion);
+    document.querySelector("div#discussionList").prepend(DIV_discussion);
   }
 }
 

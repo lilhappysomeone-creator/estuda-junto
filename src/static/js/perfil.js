@@ -1,4 +1,4 @@
-import { getCookie } from "./globals/cookies.js";
+import { delCookie, getCookie } from "./globals/cookies.js";
 
 document.querySelector(".edit-btn").addEventListener("click", openEditModal);
 document.querySelector(".cancel-btn").addEventListener("click", closeEditModal);
@@ -90,17 +90,17 @@ function openDiscussion() {
   window.location.href = "discussao.html";
 }
 
-function logout() {
+document.querySelector(".logout-btn").addEventListener("click", async function logout() {
   const confirmation = confirm("Deseja realmente sair da sua conta?");
   if (!confirmation) {
     return;
   }
 
-  localStorage.removeItem("estudaJuntoUser");
-  sessionStorage.removeItem("estudaJuntoUser");
+  await delCookie("usr");
+  await delCookie("login_");
 
-  window.location.href = "index.html";
-}
+  window.location.href = "/";
+});
 
 /* PESQUISA */
 document.getElementById("searchInput").addEventListener("keypress", function (event) {
@@ -127,9 +127,11 @@ async function loadPublicData(query) {
   const userUsername = document.querySelector("#userUsername");
   const bio = document.querySelector("#userBio");
 
-  const edit_name = document.getElementById("editName").value.trim();
-  const edit_username = document.getElementById("editUsername").value.trim();
-  const edit_bio = document.getElementById("editBio").value.trim();
+  const edit_name = document.getElementById("editName");
+  const edit_username = document.getElementById("editUsername");
+  const edit_bio = document.getElementById("editBio");
+
+  console.log(edit_name, edit_username, edit_bio);
 
   try {
     const response = await fetch("/api/public-user-info", {
@@ -146,9 +148,9 @@ async function loadPublicData(query) {
     userUsername.innerText = json.username;
     bio.innerText = json.bio !== "" ? json.bio : "Ainda não foi fornecida uma BIO para essa conta.";
 
-    edit_name = json.name;
-    edit_username = json.username;
-    edit_bio = json.bio;
+    edit_name.value = json.name;
+    edit_username.value = json.username;
+    edit_bio.value = json.bio;
   }
   catch (err) {
     console.error(err);

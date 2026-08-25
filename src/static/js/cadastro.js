@@ -1,3 +1,6 @@
+import { setCookie } from "./globals/cookies.js";
+import sender from "./globals/data-send.js";
+
 /* FORÇA DA SENHA */
 document.getElementById("password").addEventListener("input", function () {
   const password = this.value;
@@ -39,7 +42,7 @@ document.getElementById("password").addEventListener("input", function () {
 });
 
 /* CADASTRO */
-async function register(event) {
+document.querySelector("#registerForm").addEventListener("click", async function register(event) {
   event.preventDefault();
   hideMessages();
 
@@ -95,25 +98,23 @@ async function register(event) {
     bio: "Estudante e participante do Estuda Junto."
   };
 
-  await fetch("/api/create-user", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(newUser)
-  })
-  .then(res => res.json())
-  .then(dat => {
-    cookieStore.set("usr", dat.username);
-    cookieStore.set("login_", dat.login_token);
-    showSuccess("Contra Criada! Você será redirecionado em instantes");
+  document.querySelector(".register-button").disabled = true;
+  try {
+    const data = await sender.post("/api/create-user", newUser);
+    console.log(data);
+
+    await setCookie("usr", data.username);
+    await setCookie("login_", data.login_token);
+    
+    showSuccess("Conta Criada! Você será redirecionado em instantes");
     setTimeout(() => location.href = "/", 3000);
-  })
-  .catch(err => {
+  }
+  catch (err) {
     console.error(err);
     showError(err.message);
-  });
-}
+    document.querySelector(".register-button").disabled = false;
+  }
+});
 
 /* ERRO */
 function showError(message) {
